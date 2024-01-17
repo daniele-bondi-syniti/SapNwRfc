@@ -1,19 +1,24 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
+  <!-- Compilation properties. -->
   <PropertyGroup>
-    <TargetFrameworks>net472;net5</TargetFrameworks>
+    <TargetFrameworks>net472;net7.0</TargetFrameworks>
+  </PropertyGroup>
+
+
+  <!-- Publication properties. -->
+  <PropertyGroup>
     <IsPackable>false</IsPackable>
-    <CodeAnalysisRuleSet>..\..\ca.ruleset</CodeAnalysisRuleSet>
-    <SignAssembly>true</SignAssembly>
-	  <DelaySign>false</DelaySign>
-    <AssemblyOriginatorKeyFile>..\..\Signing.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
-  <PropertyGroup>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <WarningsAsErrors />
-  </PropertyGroup>
 
+  <!-- Tested assembly. -->
+  <ItemGroup>
+    <ProjectReference Include="$(MyRepoRoot)\src\SapNwRfc\SapNwRfc.csproj" />
+  </ItemGroup>
+
+
+  <!-- Dependencies. -->
   <ItemGroup>
     <PackageReference Include="altcover" Version="6.7.750" />
     <PackageReference Include="AutoFixture" Version="4.11.0" />
@@ -30,16 +35,6 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\src\SapNwRfc\SapNwRfc.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="..\..\Signing.snk">
-      <Link>Signing.snk</Link>
-    </None>
   </ItemGroup>
 
 </Project>
