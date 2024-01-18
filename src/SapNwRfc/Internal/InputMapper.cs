@@ -16,7 +16,7 @@ namespace SapNwRfc.Internal
         private static readonly ConcurrentDictionary<Type, Action<RfcInterop, IntPtr, object>> ApplyActionsCache =
             new ConcurrentDictionary<Type, Action<RfcInterop, IntPtr, object>>();
 
-        public static void Apply(RfcInterop interop, IntPtr dataHandle, object input)
+        public static void Apply(RfcInterop interop, IntPtr dataHandle, object? input)
         {
             if (input == null)
                 return;
@@ -28,7 +28,7 @@ namespace SapNwRfc.Internal
 
         private static MethodInfo GetFieldApplyMethod()
         {
-            Expression<Action<IField>> expression = field => field.Apply(default, default);
+            Expression<Action<IField>> expression = field => field.Apply(default!, default);
             return ((MethodCallExpression)expression.Body).Method;
         }
 
@@ -47,6 +47,7 @@ namespace SapNwRfc.Internal
                     dataHandleParameter: dataHandleParameter,
                     inputParameter: castedInputParameter))
                 .Where(x => x != null)
+                .Cast<Expression>() // Nullable analysis doesn't pick up the null filter automatically.
                 .ToArray();
 
             var expression = Expression.Lambda<Action<RfcInterop, IntPtr, object>>(
@@ -58,7 +59,7 @@ namespace SapNwRfc.Internal
             return expression.Compile();
         }
 
-        private static Expression BuildApplyExpressionForProperty(
+        private static Expression? BuildApplyExpressionForProperty(
             PropertyInfo propertyInfo,
             Expression interopParameter,
             Expression dataHandleParameter,
@@ -76,52 +77,53 @@ namespace SapNwRfc.Internal
             // var value = propertyInfo.GetValue(input);
             Expression property = Expression.Property(inputParameter, propertyInfo);
 
-            ConstructorInfo fieldConstructor = null;
+            // NOTE: GetFieldConstructor() wants just an Expression, meaning the constructors are not actually called with invalid parameters.
+            ConstructorInfo? fieldConstructor = null;
             if (propertyInfo.PropertyType == typeof(string))
             {
                 // new RfcStringField(name, (string)value);
-                fieldConstructor = GetFieldConstructor(() => new StringField(default, default));
+                fieldConstructor = GetFieldConstructor(() => new StringField(default!, default));
             }
             else if (propertyInfo.PropertyType == typeof(int))
             {
                 // new RfcIntField(name, (int)value);
-                fieldConstructor = GetFieldConstructor(() => new IntField(default, default));
+                fieldConstructor = GetFieldConstructor(() => new IntField(default!, default));
             }
             else if (propertyInfo.PropertyType == typeof(long))
             {
                 // new RfcLongField(name, (long)value);
-                fieldConstructor = GetFieldConstructor(() => new LongField(default, default));
+                fieldConstructor = GetFieldConstructor(() => new LongField(default!, default));
             }
             else if (propertyInfo.PropertyType == typeof(double))
             {
                 // new RfcDoubleField(name, (double)value);
-                fieldConstructor = GetFieldConstructor(() => new DoubleField(default, default));
+                fieldConstructor = GetFieldConstructor(() => new DoubleField(default!, default));
             }
             else if (propertyInfo.PropertyType == typeof(decimal))
             {
                 // new RfcDecimalField(name, (decimal)value);
-                fieldConstructor = GetFieldConstructor(() => new DecimalField(default, default));
+                fieldConstructor = GetFieldConstructor(() => new DecimalField(default!, default));
             }
             else if (propertyInfo.PropertyType == typeof(byte[]))
             {
                 // new BytesField(name, value);
-                fieldConstructor = GetFieldConstructor(() => new BytesField(default, default));
+                fieldConstructor = GetFieldConstructor(() => new BytesField(default!, default));
             }
             else if (propertyInfo.PropertyType == typeof(char[]))
             {
                 // new CharsField(name, value);
-                fieldConstructor = GetFieldConstructor(() => new CharsField(default, default));
+                fieldConstructor = GetFieldConstructor(() => new CharsField(default!, default));
             }
             else if (propertyInfo.PropertyType == typeof(DateTime) || propertyInfo.PropertyType == typeof(DateTime?))
             {
                 // new RfcDateField(name, (DateTime?)value);
-                fieldConstructor = GetFieldConstructor(() => new DateField(default, default));
+                fieldConstructor = GetFieldConstructor(() => new DateField(default!, default));
                 property = Expression.Convert(property, typeof(DateTime?));
             }
             else if (propertyInfo.PropertyType == typeof(TimeSpan) || propertyInfo.PropertyType == typeof(TimeSpan?))
             {
                 // new RfcTimeField(name, (TimeSpan?)value);
-                fieldConstructor = GetFieldConstructor(() => new TimeField(default, default));
+                fieldConstructor = GetFieldConstructor(() => new TimeField(default!, default));
                 property = Expression.Convert(property, typeof(TimeSpan?));
             }
             else if (propertyInfo.PropertyType.IsArray)

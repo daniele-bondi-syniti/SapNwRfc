@@ -373,7 +373,7 @@ namespace SapNwRfc.Tests
         {
             // Arrange
             RfcAttributes rfcAttributes = Fixture.Create<RfcAttributes>();
-            rfcAttributes.Reserved = null;
+            rfcAttributes.Reserved = null!;
             RfcErrorInfo errorInfo;
             _interopMock
                 .Setup(x => x.GetConnectionAttributes(It.IsAny<IntPtr>(), out rfcAttributes, out errorInfo))

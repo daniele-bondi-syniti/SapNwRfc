@@ -79,7 +79,7 @@ namespace SapNwRfc.Tests.Internal
 
         private sealed class StringModel
         {
-            public string StringValue { get; set; }
+            public string? StringValue { get; set; }
         }
 
         [Theory]
@@ -311,12 +311,12 @@ namespace SapNwRfc.Tests.Internal
         private sealed class FixedLengthBytesModel
         {
             [SapBufferLength(3)]
-            public byte[] BytesValue { get; set; }
+            public byte[]? BytesValue { get; set; }
         }
 
         private sealed class BytesModel
         {
-            public byte[] BytesValue { get; set; }
+            public byte[]? BytesValue { get; set; }
         }
 
         private delegate void GetCharsCallback(IntPtr dataHandle, string name, char[] buffer, uint bufferLength, out RfcErrorInfo errorInfo);
@@ -369,12 +369,12 @@ namespace SapNwRfc.Tests.Internal
         private sealed class CharsModel
         {
             [SapBufferLength(3)]
-            public char[] CharsValue { get; set; }
+            public char[]? CharsValue { get; set; }
         }
 
         private sealed class EmptyCharsModel
         {
-            public char[] CharsValue { get; set; }
+            public char[]? CharsValue { get; set; }
         }
 
         private delegate void GetDateCallback(IntPtr dataHandle, string name, char[] buffer, out RfcErrorInfo errorInfo);
@@ -598,7 +598,7 @@ namespace SapNwRfc.Tests.Internal
             _interopMock.Verify(x => x.MoveToNextRow(tableHandle, out errorInfo), Times.Exactly(3));
             result.Should().NotBeNull();
             result.Elements.Should().HaveCount(3);
-            result.Elements.First().Value.Should().Be(888);
+            result.Elements!.First().Value.Should().Be(888);
         }
 
         [Fact]
@@ -668,7 +668,7 @@ namespace SapNwRfc.Tests.Internal
 
         private sealed class ArrayModel
         {
-            public ArrayElement[] Elements { get; set; }
+            public ArrayElement[]? Elements { get; set; }
         }
 
         private sealed class ArrayElement
@@ -695,7 +695,7 @@ namespace SapNwRfc.Tests.Internal
             EnumerableModel result = OutputMapper.Extract<EnumerableModel>(_interopMock.Object, DataHandle);
 
             // access all elements at least once to complete yield
-            var enumerator = result.Elements.GetEnumerator();
+            var enumerator = result.Elements!.GetEnumerator();
 
             // first moveNext starts the yield and counts as MoveToFirstRow
             // subsequent as MoveToNextRow
@@ -769,7 +769,7 @@ namespace SapNwRfc.Tests.Internal
 
         private sealed class EnumerableModel
         {
-            public IEnumerable<EnumerableElement> Elements { get; set; }
+            public IEnumerable<EnumerableElement>? Elements { get; set; }
         }
 
         private sealed class EnumerableElement
@@ -799,12 +799,12 @@ namespace SapNwRfc.Tests.Internal
                 Times.Once);
             result.Should().NotBeNull();
             result.InnerModel.Should().NotBeNull();
-            result.InnerModel.Value.Should().Be(123);
+            result.InnerModel!.Value.Should().Be(123);
         }
 
         private sealed class NestedModel
         {
-            public InnerModel InnerModel { get; set; }
+            public InnerModel? InnerModel { get; set; }
         }
 
         private sealed class InnerModel

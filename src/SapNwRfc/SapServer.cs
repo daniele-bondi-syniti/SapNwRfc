@@ -53,7 +53,7 @@ namespace SapNwRfc
             return new SapServer(rfcInterop, rfcServerHandle, parameters);
         }
 
-        private EventHandler<SapServerErrorEventArgs> _error;
+        private EventHandler<SapServerErrorEventArgs>? _error;
 
         /// <inheritdoc cref="ISapServer"/>
         public event EventHandler<SapServerErrorEventArgs> Error
@@ -84,7 +84,7 @@ namespace SapNwRfc
             _error?.Invoke(this, new SapServerErrorEventArgs(new SapAttributes(clientInfo), new SapErrorInfo(errorInfo)));
         }
 
-        private EventHandler<SapServerStateChangeEventArgs> _stateChange;
+        private EventHandler<SapServerStateChangeEventArgs>? _stateChange;
 
         /// <inheritdoc cref="ISapServer"/>
         public event EventHandler<SapServerStateChangeEventArgs> StateChange

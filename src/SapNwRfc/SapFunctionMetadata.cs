@@ -10,8 +10,8 @@ namespace SapNwRfc
     {
         private readonly RfcInterop _interop;
         private readonly IntPtr _functionDescHandle;
-        private SapMetadataCollection<ISapParameterMetadata> _parameters;
-        private SapMetadataCollection<ISapExceptionMetadata> _exceptions;
+        private SapMetadataCollection<ISapParameterMetadata>? _parameters;
+        private SapMetadataCollection<ISapExceptionMetadata>? _exceptions;
 
         internal SapFunctionMetadata(RfcInterop interop, IntPtr functionDescHandle)
         {
@@ -33,8 +33,7 @@ namespace SapNwRfc
         }
 
         /// <inheritdoc cref="ISapFunctionMetadata"/>
-        public ISapMetadataCollection<ISapParameterMetadata> Parameters => _parameters ??
-            (_parameters = new SapMetadataCollection<ISapParameterMetadata>(GetParameterByIndex, GetParameterByName, GetParameterCount));
+        public ISapMetadataCollection<ISapParameterMetadata> Parameters => _parameters ??= new SapMetadataCollection<ISapParameterMetadata>(GetParameterByIndex, GetParameterByName, GetParameterCount);
 
         private ISapParameterMetadata GetParameterByIndex(int index)
         {
@@ -61,7 +60,7 @@ namespace SapNwRfc
             return (int)count;
         }
 
-        private ISapParameterMetadata GetParameterByName(string name)
+        private ISapParameterMetadata? GetParameterByName(string name)
         {
             RfcResultCode resultCode = _interop.GetParameterDescByName(
                 funcDesc: _functionDescHandle,
@@ -78,8 +77,7 @@ namespace SapNwRfc
         }
 
         /// <inheritdoc cref="ISapFunctionMetadata"/>
-        public ISapMetadataCollection<ISapExceptionMetadata> Exceptions => _exceptions ??
-            (_exceptions = new SapMetadataCollection<ISapExceptionMetadata>(GetExceptionByIndex, GetExceptionByName, GetExceptionCount));
+        public ISapMetadataCollection<ISapExceptionMetadata> Exceptions => _exceptions ??= new SapMetadataCollection<ISapExceptionMetadata>(GetExceptionByIndex, GetExceptionByName, GetExceptionCount);
 
         private ISapExceptionMetadata GetExceptionByIndex(int index)
         {
@@ -106,7 +104,7 @@ namespace SapNwRfc
             return (int)count;
         }
 
-        private ISapExceptionMetadata GetExceptionByName(string name)
+        private ISapExceptionMetadata? GetExceptionByName(string name)
         {
             RfcResultCode resultCode = _interop.GetExceptionDescByName(
                 funcDesc: _functionDescHandle,

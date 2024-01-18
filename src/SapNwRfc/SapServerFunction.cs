@@ -12,7 +12,7 @@ namespace SapNwRfc
         private readonly RfcInterop _interop;
         private readonly IntPtr _functionHandle;
         private readonly IntPtr _functionDescriptionHandle;
-        private SapFunctionMetadata _functionMetadata;
+        private SapFunctionMetadata? _functionMetadata;
 
         internal SapServerFunction(
             RfcInterop interop,

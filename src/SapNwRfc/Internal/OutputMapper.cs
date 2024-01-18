@@ -36,7 +36,8 @@ namespace SapNwRfc.Internal
                     interop: interop,
                     dataHandle: dataHandle,
                     result: result))
-                .Where(x => x != null);
+                .Where(x => x != null)
+                .Cast<Expression>(); // Nullable analysis doesn't pick up the null filter automatically.
 
             Expression[] body = Array.Empty<Expression>()
                 .Concat(new[] { Expression.Assign(result, Expression.New(type)) })
@@ -53,7 +54,7 @@ namespace SapNwRfc.Internal
             return expression.Compile();
         }
 
-        private static Expression BuildExtractExpressionForProperty(
+        private static Expression? BuildExtractExpressionForProperty(
             PropertyInfo propertyInfo,
             Expression interop,
             Expression dataHandle,
@@ -72,38 +73,39 @@ namespace SapNwRfc.Internal
 
             var arguments = new Collection<Expression> { interop, dataHandle, name };
 
+            // NOTE: GetMethodInfo() wants just an Expression, meaning the functions are not actually called with invalid parameters.
             bool convertToNonNullable = false;
-            MethodInfo extractMethod = null;
+            MethodInfo? extractMethod = null;
             if (propertyInfo.PropertyType == typeof(string))
             {
-                extractMethod = GetMethodInfo(() => StringField.Extract(default, default, default));
+                extractMethod = GetMethodInfo(() => StringField.Extract(default!, default, default!));
             }
             else if (propertyInfo.PropertyType == typeof(int))
             {
-                extractMethod = GetMethodInfo(() => IntField.Extract(default, default, default));
+                extractMethod = GetMethodInfo(() => IntField.Extract(default!, default, default!));
             }
             else if (propertyInfo.PropertyType == typeof(long))
             {
-                extractMethod = GetMethodInfo(() => LongField.Extract(default, default, default));
+                extractMethod = GetMethodInfo(() => LongField.Extract(default!, default, default!));
             }
             else if (propertyInfo.PropertyType == typeof(double))
             {
-                extractMethod = GetMethodInfo(() => DoubleField.Extract(default, default, default));
+                extractMethod = GetMethodInfo(() => DoubleField.Extract(default!, default, default!));
             }
             else if (propertyInfo.PropertyType == typeof(decimal))
             {
-                extractMethod = GetMethodInfo(() => DecimalField.Extract(default, default, default));
+                extractMethod = GetMethodInfo(() => DecimalField.Extract(default!, default, default!));
             }
             else if (propertyInfo.PropertyType == typeof(byte[]))
             {
-                extractMethod = GetMethodInfo(() => BytesField.Extract(default, default, default, default));
+                extractMethod = GetMethodInfo(() => BytesField.Extract(default!, default, default!, default));
 
                 SapBufferLengthAttribute bufferLengthAttribute = propertyInfo.GetCustomAttribute<SapBufferLengthAttribute>();
                 arguments.Add(Expression.Constant(bufferLengthAttribute?.BufferLength, typeof(int?)));
             }
             else if (propertyInfo.PropertyType == typeof(char[]))
             {
-                extractMethod = GetMethodInfo(() => CharsField.Extract(default, default, default, default));
+                extractMethod = GetMethodInfo(() => CharsField.Extract(default!, default, default!, default));
 
                 SapBufferLengthAttribute bufferLengthAttribute = propertyInfo.GetCustomAttribute<SapBufferLengthAttribute>();
                 arguments.Add(Expression.Constant(bufferLengthAttribute?.BufferLength ?? 0));
@@ -111,18 +113,18 @@ namespace SapNwRfc.Internal
             else if (propertyInfo.PropertyType == typeof(DateTime) || propertyInfo.PropertyType == typeof(DateTime?))
             {
                 convertToNonNullable = propertyInfo.PropertyType == typeof(DateTime);
-                extractMethod = GetMethodInfo(() => DateField.Extract(default, default, default));
+                extractMethod = GetMethodInfo(() => DateField.Extract(default!, default, default!));
             }
             else if (propertyInfo.PropertyType == typeof(TimeSpan) || propertyInfo.PropertyType == typeof(TimeSpan?))
             {
                 convertToNonNullable = propertyInfo.PropertyType == typeof(TimeSpan);
-                extractMethod = GetMethodInfo(() => TimeField.Extract(default, default, default));
+                extractMethod = GetMethodInfo(() => TimeField.Extract(default!, default, default!));
             }
             else if (propertyInfo.PropertyType.IsArray)
             {
                 Type elementType = propertyInfo.PropertyType.GetElementType();
 
-                extractMethod = GetMethodInfo(() => TableField<object>.Extract<object>(default, default, default))
+                extractMethod = GetMethodInfo(() => TableField<object>.Extract<object>(default!, default, default!))
                     .GetGenericMethodDefinition()
                     .MakeGenericMethod(elementType);
             }
@@ -130,13 +132,13 @@ namespace SapNwRfc.Internal
             {
                 Type elementType = propertyInfo.PropertyType.GetGenericArguments()[0];
 
-                extractMethod = GetMethodInfo(() => EnumerableField<object>.Extract<object>(default, default, default))
+                extractMethod = GetMethodInfo(() => EnumerableField<object>.Extract<object>(default!, default, default!))
                     .GetGenericMethodDefinition()
                     .MakeGenericMethod(elementType);
             }
             else if (!propertyInfo.PropertyType.IsPrimitive)
             {
-                extractMethod = GetMethodInfo(() => StructureField<object>.Extract<object>(default, default, default))
+                extractMethod = GetMethodInfo(() => StructureField<object>.Extract<object>(default!, default, default!))
                     .GetGenericMethodDefinition()
                     .MakeGenericMethod(propertyInfo.PropertyType);
             }

@@ -194,7 +194,7 @@ namespace SapNwRfc.Tests.Pooling
 
         private sealed class OutputModel
         {
-            public string Name { get; set; }
+            public string? Name { get; set; }
         }
     }
 }

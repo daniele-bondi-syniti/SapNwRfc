@@ -118,9 +118,9 @@ namespace SapNwRfc.Tests.Pooling
         public void GetConnection_CalledTwice_ConnectionFactoryReturnsNullFirst_ShouldNotCausePoolStarvation()
         {
             // Arrange
-            ISapConnection firstConnection = null;
+            ISapConnection? firstConnection = null;
             ISapConnection secondConnection = Mock.Of<ISapConnection>();
-            var connectionFactoryMock = new Mock<Func<SapConnectionParameters, ISapConnection>>();
+            var connectionFactoryMock = new Mock<Func<SapConnectionParameters, ISapConnection?>>();
             connectionFactoryMock
                 .SetupSequence(x => x(It.IsAny<SapConnectionParameters>()))
                 .Returns(firstConnection)
@@ -220,7 +220,7 @@ namespace SapNwRfc.Tests.Pooling
                 connectionFactory: _ => Mock.Of<ISapConnection>());
 
             ISapConnection connection1 = pool.GetConnection();
-            ISapConnection connection2 = null;
+            ISapConnection? connection2 = null;
 
             // Act
             Task.Run(() =>
@@ -249,7 +249,7 @@ namespace SapNwRfc.Tests.Pooling
 
             ISapConnection connection1 = pool.GetConnection();
             ISapConnection connection2 = pool.GetConnection();
-            ISapConnection connection3 = null;
+            ISapConnection? connection3 = null;
 
             // Act
             Task.Run(() =>
@@ -279,7 +279,7 @@ namespace SapNwRfc.Tests.Pooling
                 connectionFactory: _ => Mock.Of<ISapConnection>());
 
             ISapConnection connection1 = pool.GetConnection();
-            ISapConnection connection2 = null;
+            ISapConnection? connection2 = null;
 
             // Act
             Task.Run(() =>

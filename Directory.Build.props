@@ -1,0 +1,42 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <!-- Custom properties. -->
+  <PropertyGroup>
+    <MyRepoRoot>$(MSBuildThisFileDirectory.TrimEnd('\'))</MyRepoRoot>
+  </PropertyGroup>
+
+
+  <!-- Build artifacts properties. -->
+  <PropertyGroup>
+    <ArtifactsPath>$(MyRepoRoot)\artifacts</ArtifactsPath>
+
+    <BaseIntermediateOutputPath>$(ArtifactsPath)\obj\$(MSBuildProjectName)</BaseIntermediateOutputPath>
+    <BaseOutputPath>$(ArtifactsPath)\bin\$(MSBuildProjectName)</BaseOutputPath>
+    <PackageOutputPath>$(ArtifactsPath)\package\$(MSBuildProjectName)</PackageOutputPath>
+    <PublishDir>$(ArtifactsPath)\publish\$(MSBuildProjectName)</PublishDir>
+  </PropertyGroup>
+
+
+  <!-- Compilation properties. -->
+  <PropertyGroup>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <AnalysisLevel>latest</AnalysisLevel>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+
+
+  <!-- Assembly signing properties. -->
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>$(MyRepoRoot)\Signing.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+
+</Project>

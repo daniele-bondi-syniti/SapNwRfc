@@ -7,7 +7,7 @@ namespace SapNwRfc.Internal.Interop
     internal static class RfcResultCodeExtensions
     {
         [SuppressMessage("ReSharper", "ConvertIfStatementToSwitchStatement", Justification = "Readability")]
-        public static void ThrowOnError(this RfcResultCode resultCode, RfcErrorInfo errorInfo, Action beforeThrow = null)
+        public static void ThrowOnError(this RfcResultCode resultCode, RfcErrorInfo errorInfo, Action? beforeThrow = null)
         {
             if (resultCode == RfcResultCode.RFC_OK)
                 return;

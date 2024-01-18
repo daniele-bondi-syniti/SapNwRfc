@@ -46,7 +46,7 @@ namespace SapNwRfc.Tests.Internal
             RfcErrorInfo errorInfo;
 
             // Act
-            InputMapper.Apply(_interopMock.Object, DataHandle, new { SomeString = (string)null });
+            InputMapper.Apply(_interopMock.Object, DataHandle, new { SomeString = (string?)null });
 
             // Assert
             _interopMock.Verify(
@@ -126,7 +126,7 @@ namespace SapNwRfc.Tests.Internal
             RfcErrorInfo errorInfo;
 
             // Act
-            InputMapper.Apply(_interopMock.Object, DataHandle, new { SomeByteArray = (byte[])null });
+            InputMapper.Apply(_interopMock.Object, DataHandle, new { SomeByteArray = (byte[]?)null });
 
             // Assert
             _interopMock.Verify(
@@ -154,7 +154,7 @@ namespace SapNwRfc.Tests.Internal
             RfcErrorInfo errorInfo;
 
             // Act
-            InputMapper.Apply(_interopMock.Object, DataHandle, new { SomeCharArray = (char[])null });
+            InputMapper.Apply(_interopMock.Object, DataHandle, new { SomeCharArray = (char[]?)null });
 
             // Assert
             _interopMock.Verify(
@@ -461,7 +461,7 @@ namespace SapNwRfc.Tests.Internal
 
         private sealed class TableModel
         {
-            public ArrayElement[] SomeArray { get; set; }
+            public ArrayElement[]? SomeArray { get; set; }
         }
 
         private sealed class ArrayElement
@@ -471,7 +471,7 @@ namespace SapNwRfc.Tests.Internal
 
         private sealed class EnumerableModel
         {
-            public IEnumerable<EnumerableElement> SomeEnumerable { get; set; }
+            public IEnumerable<EnumerableElement>? SomeEnumerable { get; set; }
         }
 
         private sealed class EnumerableElement
@@ -481,7 +481,7 @@ namespace SapNwRfc.Tests.Internal
 
         private sealed class StructureModel
         {
-            public Structure Structure { get; set; }
+            public Structure? Structure { get; set; }
         }
 
         private sealed class Structure

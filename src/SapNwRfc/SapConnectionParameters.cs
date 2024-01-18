@@ -15,289 +15,289 @@ namespace SapNwRfc
         /// Gets or sets the Application Server Host parameter.
         /// </summary>
         [SapName("ASHOST")]
-        public string AppServerHost { get; set; }
+        public string AppServerHost { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the SNC Library Path parameter.
         /// </summary>
         [SapName("SNC_LIB")]
-        public string SncLibraryPath { get; set; }
+        public string SncLibraryPath { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the SNC QOP parameter.
         /// </summary>
         [SapName("SNC_QOP")]
-        public string SncQop { get; set; }
+        public string SncQop { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the Trace parameter.
         /// </summary>
         [SapName("TRACE")]
-        public string Trace { get; set; }
+        public string Trace { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the SAP Router parameter.
         /// </summary>
         [SapName("SAPROUTER")]
-        public string SapRouter { get; set; }
+        public string SapRouter { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the No Compression parameter.
         /// </summary>
         [SapName("NO_COMPRESSION")]
-        public string NoCompression { get; set; }
+        public string NoCompression { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the On Character Conversion Error parameter.
         /// </summary>
         [SapName("ON_CCE")]
-        public string OnCharacterConversionError { get; set; }
+        public string OnCharacterConversionError { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the Character Fault Indicator Token parameter.
         /// </summary>
         [SapName("CFIT")]
-        public string CharacterFaultIndicatorToken { get; set; }
+        public string CharacterFaultIndicatorToken { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the Maximum Pool Size parameter.
         /// </summary>
         [SapName("MAX_POOL_SIZE")]
-        public string MaxPoolSize { get; set; }
+        public string MaxPoolSize { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the Pool Size parameter.
         /// </summary>
         [SapName("POOL_SIZE")]
-        public string PoolSize { get; set; }
+        public string PoolSize { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the SNC Partner Names parameter.
         /// </summary>
         [SapName("SNC_PARTNER_NAMES")]
-        public string SncPartnerNames { get; set; }
+        public string SncPartnerNames { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the Idle Timeout parameter.
         /// </summary>
         [SapName("IDLE_TIMEOUT")]
-        public string IdleTimeout { get; set; }
+        public string IdleTimeout { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the Maximum Pool Wait Time parameter.
         /// </summary>
         [SapName("MAX_POOL_WAIT_TIME")]
-        public string MaxPoolWaitTime { get; set; }
+        public string MaxPoolWaitTime { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the Registration Count parameter.
         /// </summary>
         [SapName("REG_COUNT")]
-        public string RegistrationCount { get; set; }
+        public string RegistrationCount { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the Password Change Enforced parameter.
         /// </summary>
         [SapName("PASSWORD_CHANGE_ENFORCED")]
-        public string PasswordChangeEnforced { get; set; }
+        public string PasswordChangeEnforced { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the Name parameter.
         /// </summary>
         [SapName("NAME")]
-        public string Name { get; set; }
+        public string Name { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the Repository Destination parameter.
         /// </summary>
         [SapName("REPOSITORY_DESTINATION")]
-        public string RepositoryDestination { get; set; }
+        public string RepositoryDestination { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the Repository User parameter.
         /// </summary>
         [SapName("REPOSITORY_USER")]
-        public string RepositoryUser { get; set; }
+        public string RepositoryUser { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the Repository Password parameter.
         /// </summary>
         [SapName("REPOSITORY_PASSWD")]
-        public string RepositoryPassword { get; set; }
+        public string RepositoryPassword { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the Repository SNC My Name parameter.
         /// </summary>
         [SapName("REPOSITORY_SNC_MYNAME")]
-        public string RepositorySncMyName { get; set; }
+        public string RepositorySncMyName { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the Reporitory X509 Certificate parameter.
         /// </summary>
         [SapName("REPOSITORY_X509CERT")]
-        public string RepositoryX509Certificate { get; set; }
+        public string RepositoryX509Certificate { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the Idle Check Time parameter.
         /// </summary>
         [SapName("IDLE_CHECK_TIME")]
-        public string IdleCheckTime { get; set; }
+        public string IdleCheckTime { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the SNC My Name parameter.
         /// </summary>
         [SapName("SNC_MYNAME")]
-        public string SncMyName { get; set; }
+        public string SncMyName { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the SNC Partner Name parameter.
         /// </summary>
         [SapName("SNC_PARTNERNAME")]
-        public string SncPartnerName { get; set; }
+        public string SncPartnerName { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the Program Id parameter.
         /// </summary>
         [SapName("PROGRAM_ID")]
-        public string ProgramId { get; set; }
+        public string ProgramId { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the App Server Service parameter.
         /// </summary>
         [SapName("ASSERV")]
-        public string AppServerService { get; set; }
+        public string AppServerService { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the Message Server Host parameter.
         /// </summary>
         [SapName("MSHOST")]
-        public string MessageServerHost { get; set; }
+        public string MessageServerHost { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the Message Server Service parameter.
         /// </summary>
         [SapName("MSSERV")]
-        public string MessageServerService { get; set; }
+        public string MessageServerService { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the R/3 Name parameter.
         /// </summary>
         [SapName("R3NAME")]
-        public string R3Name { get; set; }
+        public string R3Name { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the Logon Group parameter.
         /// </summary>
         [SapName("GROUP")]
-        public string LogonGroup { get; set; }
+        public string LogonGroup { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the Gateway Host parameter.
         /// </summary>
         [SapName("GWHOST")]
-        public string GatewayHost { get; set; }
+        public string GatewayHost { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the Gateway Service parameter.
         /// </summary>
         [SapName("GWSERV")]
-        public string GatewayService { get; set; }
+        public string GatewayService { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the System Number parameter.
         /// </summary>
         [SapName("SYSNR")]
-        public string SystemNumber { get; set; }
+        public string SystemNumber { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the User parameter.
         /// </summary>
         [SapName("USER")]
-        public string User { get; set; }
+        public string User { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the Alias User parameter.
         /// </summary>
         [SapName("ALIAS_USER")]
-        public string AliasUser { get; set; }
+        public string AliasUser { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the SNC Mode parameter.
         /// </summary>
         [SapName("SNC_MODE")]
-        public string SncMode { get; set; }
+        public string SncMode { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the Client parameter.
         /// </summary>
         [SapName("CLIENT")]
-        public string Client { get; set; }
+        public string Client { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the Password parameter.
         /// </summary>
         [SapName("PASSWD")]
-        public string Password { get; set; }
+        public string Password { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the Codepage parameter.
         /// </summary>
         [SapName("CODEPAGE")]
-        public string Codepage { get; set; }
+        public string Codepage { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the Partner Char Size parameter.
         /// </summary>
         [SapName("PCS")]
-        public string PartnerCharSize { get; set; }
+        public string PartnerCharSize { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the System ID parameter.
         /// </summary>
         [SapName("SYSID")]
-        public string SystemId { get; set; }
+        public string SystemId { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the Systems ID parameter.
         /// </summary>
         [SapName("SYS_IDS")]
-        public string SystemIds { get; set; }
+        public string SystemIds { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the X509 Certificate parameter.
         /// </summary>
         [SapName("X509CERT")]
-        public string X509Certificate { get; set; }
+        public string X509Certificate { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the SAP SSO2 Ticket parameter.
         /// </summary>
         [SapName("MYSAPSSO2")]
-        public string SapSso2Ticket { get; set; }
+        public string SapSso2Ticket { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the Use SAP GUI parameter.
         /// </summary>
         [SapName("USE_SAPGUI")]
-        public string UseSapGui { get; set; }
+        public string UseSapGui { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the ABAP Debug parameter.
         /// </summary>
         [SapName("ABAP_DEBUG")]
-        public string AbapDebug { get; set; }
+        public string AbapDebug { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the Logon Check parameter.
         /// </summary>
         [SapName("LCHECK")]
-        public string LogonCheck { get; set; }
+        public string LogonCheck { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the Language parameter.
         /// </summary>
         [SapName("LANG")]
-        public string Language { get; set; }
+        public string Language { get; set; } = string.Empty;
 
         /// <summary>
         /// Parses a connection string into a <see cref="SapConnectionParameters"/> object.

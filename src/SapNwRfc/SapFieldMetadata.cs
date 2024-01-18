@@ -39,7 +39,7 @@ namespace SapNwRfc
         public uint Decimals => _fieldDescription.Decimals;
 
         /// <inheritdoc cref="ISapFieldMetadata"/>
-        public ISapTypeMetadata GetTypeMetadata()
+        public ISapTypeMetadata? GetTypeMetadata()
         {
             if (_fieldDescription.TypeDescHandle == IntPtr.Zero)
                 return null;

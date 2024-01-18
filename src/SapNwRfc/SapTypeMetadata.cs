@@ -10,7 +10,7 @@ namespace SapNwRfc
     {
         private readonly RfcInterop _interop;
         private readonly IntPtr _typeDescription;
-        private SapMetadataCollection<ISapFieldMetadata> _fields;
+        private SapMetadataCollection<ISapFieldMetadata>? _fields;
 
         internal SapTypeMetadata(RfcInterop interop, IntPtr typeDescription)
         {
@@ -60,7 +60,7 @@ namespace SapNwRfc
             return (int)count;
         }
 
-        private ISapFieldMetadata GetFieldByName(string name)
+        private ISapFieldMetadata? GetFieldByName(string name)
         {
             RfcResultCode resultCode = _interop.GetFieldDescByName(
                 typeHandle: _typeDescription,
