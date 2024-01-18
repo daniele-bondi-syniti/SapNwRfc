@@ -3,20 +3,26 @@ name: Build and publish nuget package(s)
 
 on:
   release:
-    # Workflows are not triggered for the created, edited, or deleted activity types for draft releases.
     types:
-      - published
+      - created
+      - edited
 
   workflow_dispatch:
+
+
+defaults:
+  run:
+    shell: bash
 
 
 jobs:
   build:
     name: Build
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     permissions:
       contents: read
+      packages: write
 
     steps:
     - uses: actions/checkout@v4
@@ -42,7 +48,7 @@ jobs:
 
   publish-github:
     name: Publish to GitHub Packages
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     needs: build
 
     permissions:
@@ -56,7 +62,7 @@ jobs:
 
   publish-nuget:
     name: Publish to NuGet Registry
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     needs: build
 
     permissions:
