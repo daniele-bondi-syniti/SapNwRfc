@@ -13,7 +13,7 @@ namespace SapNwRfc.Pooling
     {
         private readonly SapConnectionParameters _connectionParameters;
         private readonly int _poolSize;
-        private readonly Func<SapConnectionParameters, ISapConnection> _connectionFactory;
+        private readonly Func<SapConnectionParameters, ISapConnection?> _connectionFactory;
         private readonly TimeSpan _connectionIdleTimeout;
         private readonly object _syncRoot = new object();
         private readonly ConcurrentQueue<(ISapConnection Connection, DateTime ExpiresAtUtc)> _idleConnections = new ConcurrentQueue<(ISapConnection Connection, DateTime ExpiresAtUtc)>();
@@ -62,7 +62,7 @@ namespace SapNwRfc.Pooling
             int poolSize = 5,
             TimeSpan? connectionIdleTimeout = null,
             TimeSpan? idleDetectionInterval = null,
-            Func<SapConnectionParameters, ISapConnection> connectionFactory = null)
+            Func<SapConnectionParameters, ISapConnection?>? connectionFactory = null)
         {
             _connectionParameters = connectionParameters;
             _poolSize = poolSize;
@@ -101,7 +101,7 @@ namespace SapNwRfc.Pooling
             {
                 if (_openConnectionCount < _poolSize)
                 {
-                    ISapConnection connection = null;
+                    ISapConnection? connection = null;
 
                     lock (_syncRoot)
                     {

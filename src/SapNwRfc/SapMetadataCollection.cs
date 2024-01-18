@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace SapNwRfc
 {
@@ -11,12 +12,12 @@ namespace SapNwRfc
     public sealed class SapMetadataCollection<T> : ISapMetadataCollection<T>
     {
         private readonly Func<int, T> _getByIndex;
-        private readonly Func<string, T> _getByName;
+        private readonly Func<string, T?> _getByName;
         private readonly Func<int> _getCount;
         private int? _count;
-        private T[] _cache;
+        private T[]? _cache;
 
-        internal SapMetadataCollection(Func<int, T> getByIndex, Func<string, T> getByName, Func<int> getCount)
+        internal SapMetadataCollection(Func<int, T> getByIndex, Func<string, T?> getByName, Func<int> getCount)
         {
             _getByIndex = getByIndex;
             _getByName = getByName;
@@ -66,7 +67,7 @@ namespace SapNwRfc
         }
 
         /// <inheritdoc cref="ISapMetadataCollection{T}"/>
-        public bool TryGetValue(string name, out T value) => (value = _getByName(name)) != null;
+        public bool TryGetValue(string name, [NotNullWhen(true)] out T? value) => (value = _getByName(name)) != null;
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }

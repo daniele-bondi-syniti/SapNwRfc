@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace SapNwRfc
 {
@@ -14,6 +15,6 @@ namespace SapNwRfc
         /// <param name="name">The name.</param>
         /// <param name="value">The metadata.</param>
         /// <returns><c>true</c> if the metadata was found; otherwise <c>false</c>.</returns>
-        bool TryGetValue(string name, out T value);
+        bool TryGetValue(string name, [NotNullWhen(true)] out T? value);
     }
 }

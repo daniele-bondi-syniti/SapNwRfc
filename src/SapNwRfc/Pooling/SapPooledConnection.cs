@@ -13,7 +13,7 @@ namespace SapNwRfc.Pooling
         private readonly List<ISapFunction> _functions = new List<ISapFunction>();
 
         private readonly ISapConnectionPool _pool;
-        private ISapConnection _connection = null;
+        private ISapConnection? _connection = null;
         private bool _disposed = false;
 
         /// <summary>

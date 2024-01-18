@@ -5,9 +5,9 @@ using SapNwRfc.Internal.Interop;
 namespace SapNwRfc.Internal.Fields
 {
     [SuppressMessage("ReSharper", "MemberCanBePrivate.Global", Justification = "Reflection use")]
-    internal sealed class StringField : Field<string>
+    internal sealed class StringField : Field<string?>
     {
-        public StringField(string name, string value)
+        public StringField(string name, string? value)
             : base(name, value)
         {
         }

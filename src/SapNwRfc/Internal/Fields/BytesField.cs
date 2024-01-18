@@ -5,9 +5,9 @@ using SapNwRfc.Internal.Interop;
 namespace SapNwRfc.Internal.Fields
 {
     [SuppressMessage("ReSharper", "MemberCanBePrivate.Global", Justification = "Reflection use")]
-    internal sealed class BytesField : Field<byte[]>
+    internal sealed class BytesField : Field<byte[]?>
     {
-        public BytesField(string name, byte[] value)
+        public BytesField(string name, byte[]? value)
             : base(name, value)
         {
         }

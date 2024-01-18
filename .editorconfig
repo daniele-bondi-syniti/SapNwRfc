@@ -190,6 +190,9 @@ dotnet_diagnostic.SA1008.severity = none
 # Closing parenthesis must be followed by a space - NOT COMPATIBLE WITH TUPLES
 dotnet_diagnostic.SA1009.severity = none
 
+# Closing square bracket should be followed by a space - NOT COMPATIBLE WITH NULLABLE ARRAYS
+dotnet_diagnostic.SA1011.severity = none
+
 # Prefix local calls with this
 dotnet_diagnostic.SA1101.severity = none
 

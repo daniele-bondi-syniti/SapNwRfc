@@ -44,6 +44,6 @@ namespace SapNwRfc
         /// Gets the type metadata if this is a <see cref="SapRfcType.RFCTYPE_STRUCTURE"/> or <see cref="SapRfcType.RFCTYPE_TABLE"/>.
         /// </summary>
         /// <returns>The type metadata or <c>null</c>.</returns>
-        ISapTypeMetadata GetTypeMetadata();
+        ISapTypeMetadata? GetTypeMetadata();
     }
 }

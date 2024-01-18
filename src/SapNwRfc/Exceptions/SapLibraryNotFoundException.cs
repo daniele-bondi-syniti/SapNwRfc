@@ -20,7 +20,7 @@ namespace SapNwRfc.Exceptions
         }
 
         [ExcludeFromCodeCoverage]
-        private static string BuildMessage()
+        private static string? BuildMessage()
         {
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 return BuildWindowsMessage();

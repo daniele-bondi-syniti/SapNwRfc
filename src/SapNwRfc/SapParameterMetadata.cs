@@ -45,7 +45,7 @@ namespace SapNwRfc
         public string Description => _parameterDescription.ParameterText;
 
         /// <inheritdoc cref="ISapParameterMetadata"/>
-        public ISapTypeMetadata GetTypeMetadata()
+        public ISapTypeMetadata? GetTypeMetadata()
         {
             if (_parameterDescription.TypeDescHandle == IntPtr.Zero)
                 return null;
