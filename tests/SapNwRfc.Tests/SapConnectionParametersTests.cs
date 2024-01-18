@@ -50,7 +50,7 @@ namespace SapNwRfc.Tests
                 .GetProperties(BindingFlags.Instance | BindingFlags.Public)
                 .Aggregate(new StringBuilder(), (sb, propertyInfo) =>
                 {
-                    object value = propertyInfo.GetValue(expectedParameters);
+                    object? value = propertyInfo.GetValue(expectedParameters);
                     sb.Append($"{propertyInfo.Name}={value};");
                     return sb;
                 })

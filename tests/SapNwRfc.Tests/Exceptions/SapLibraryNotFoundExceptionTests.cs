@@ -24,7 +24,7 @@ namespace SapNwRfc.Tests.Exceptions
         public void Constructor_ShouldSetMessage()
         {
             // Act
-            var exception = new SapLibraryNotFoundException(innerException: default);
+            var exception = new SapLibraryNotFoundException(innerException: default!);
 
             // Assert
             exception.Message.Should().MatchRegex("The SAP RFC libraries were not found in the output folder or in a folder contained in the systems .* environment variable");

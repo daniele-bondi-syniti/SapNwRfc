@@ -42,12 +42,12 @@ namespace SapNwRfc.Tests.Pooling
 
         public sealed class TestInput
         {
-            public string Name { get; set; }
+            public string? Name { get; set; }
         }
 
         public sealed class TestOutput
         {
-            public string Name { get; set; }
+            public string? Name { get; set; }
         }
     }
 }
